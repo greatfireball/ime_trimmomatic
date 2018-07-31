@@ -29,5 +29,5 @@ ENV TRIMMOMATIC_DIR=/opt/Trimmomatic
 VOLUME /data
 WORKDIR /data
 
-ENTRYPOINT /usr/local/bin/trimmomatic.sh
+ENTRYPOINT ["/usr/local/bin/trimmomatic.sh"]
 CMD ["-version"]
