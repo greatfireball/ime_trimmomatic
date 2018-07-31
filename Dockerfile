@@ -16,3 +16,18 @@ LABEL maintainer="frank.foerster@ime.fraunhofer.de" \
 
 RUN apt-get update && apt-get install -y wget unzip && apt-get clean
 
+WORKDIR /opt/
+RUN wget -O /tmp/trimmomatic.zip http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.38.zip && \
+    unzip /tmp/trimmomatic.zip && \
+    rm /tmp/trimmomatic.zip && \
+    ln -s Trimmo* Trimmomatic
+
+ADD trimmomatic.sh /usr/local/bin
+
+ENV TRIMMOMATIC_DIR=/opt/Trimmomatic
+
+VOLUME /data
+WORKDIR /data
+
+ENTRYPOINT /usr/local/bin/trimmomatic.sh
+CMD -version
