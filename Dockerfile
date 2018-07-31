@@ -30,4 +30,4 @@ VOLUME /data
 WORKDIR /data
 
 ENTRYPOINT /usr/local/bin/trimmomatic.sh
-CMD -version
+CMD ["-version"]
