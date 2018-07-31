@@ -3,6 +3,11 @@ export BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 # check if VARIABLE exists
 # taken from https://stackoverflow.com/questions/3601515/how-to-check-if-a-variable-is-set-in-bash
+if [ -z ${IMAGE_NAME+x} ]
+then
+    export IMAGE_NAME=${1:-dockerbuild} # use first argument or dockerbuild instead
+fi
+
 if [ -z ${GIT_SHA1+x} ]
 then
     export GIT_SHA1=$(git rev-parse HEAD)
